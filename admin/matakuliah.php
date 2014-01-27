@@ -42,7 +42,7 @@
 				<option value="6">6</option>
 				<option value="7">7</option>
 				<option value="8">8</option>
-				<option value="P">Pilihan</option>
+				<option value="0">MK Pilihan</option>
 			</select>
 		</td>
 	</tr>
