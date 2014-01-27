@@ -1,0 +1,64 @@
+@import url("bootstrap.min.css");
+@import url("font-awesome.min.css");
+
+.bg-login {
+ width: 300px;
+margin: 7% auto 0px;
+border-radius: 5px;
+background: #f2f2f2;
+}
+.back{
+display:none;
+position: fixed;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+z-index: 999999;
+background: rgba(22, 19, 19, 0.76);
+}
+.center{
+text-align:center;
+}
+.error {
+position: absolute;
+width: 100%;
+top: 36%;
+padding: 40px 20px;
+z-index: 9999;
+}
+.logo{
+width:115px;
+height:110px;
+background:url('../img/logo.png') no-repeat;
+margin:0 auto;
+}
+.form-login {
+width: 300px;
+margin: 7% auto 0px;
+border: 1px solid rgb(238, 238, 238);
+border-radius: 5px;
+background: #ccc;
+padding: 10px 20px;
+}
+.info {
+    width: 100px;
+}
+.copyright {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 11px;
+	color:#000000;
+}
+.line{
+margin-top: -15px;
+border-bottom:1px solid #ccc;
+}
+.not-found{
+background:#D9534F;
+}
+.not-found-content {
+    text-align: center;
+    color: #fff;
+	margin-top: 15%;
+}
