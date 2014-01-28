@@ -66,7 +66,7 @@ if(isset($_POST['add'])){
 
                       $query_mat  = mysqli_query($conn,$matkul);
                       while ($matname = mysqli_fetch_array($query_mat)) {
-                           echo '<option value="'.$matname['id_matkul'].'">'.$matname['nama_matkul'].'</option>';
+                           echo '<option value="'.$matname['id_matkul'].'">'.$matname['semester'].' - '.$matname['nama_matkul'].'</option>';
                        } 
                       ?>
                   </select>
