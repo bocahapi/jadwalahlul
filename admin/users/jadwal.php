@@ -45,7 +45,7 @@
 		</select>
 	</div>			
 	<div  class="btn btn-danger"  id="lihat" class="form-control">Lihat</div>
-	<div class="btn btn-success" id="addnew" >Request Jadwal</div>
+	<div class="btn btn-success" id="addnew">Request Jadwal</div>
 	</form>
 </div>
 <div class="clear"></div>
@@ -72,13 +72,16 @@ $(function(){
 					$('.jadwalfull').fadeIn('slow', function() {
 						$('#menu').show();
 						$(this).html(result);
+
 					});
 				}
 			}); return false;
 		}
+			
 	});
 
-	$('#addnew').click(function(){
+	$(document).on('click','#addnew',function(event){
+		event.preventDefault();
 		
 		fakultas = $('#fakultas').val();
 		jurusan  = $('#jurusan').val();
@@ -94,9 +97,11 @@ $(function(){
 				data :{fak : fakultas,id:jurusan,im:idm},
 				success:function(result){
 					$('#addnew-modal').modal();
+					$('#addnew-modal').css('display','block');
 					$('.add-jadwal').html(result);
 				}
-			}); return false;
+			});
+			return false;
 		};
 	});
 
