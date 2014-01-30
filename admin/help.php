@@ -57,7 +57,7 @@ $querydata = "query.php";
 		while($help = mysqli_fetch_array($helps)){
 		echo '<tr class="tr">';
 				echo '<td>'.$help['judul'].'</td>';
-				echo '<td>'.kutip($help['help'],'15').'</td>';
+				echo '<td>'.$help['help'].'</td>';
 				echo '<td id="action" data="help"><a href="#"  data-id="id_help-'.$help['id_help'].'" title="delete"><i class="fa fa-trash-o"></i></a>  |  <a href="dashboard.php?page=help&aksi=update-'.$help['id_help'].'"  title="edit"><i class="fa fa-pencil-square-o"></i></a> </td></tr>';
 		
 		}
