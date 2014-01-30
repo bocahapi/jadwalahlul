@@ -28,17 +28,22 @@ $fakultas = $_POST['fakultas'];
 	exit;
 
 }
-
+# Hitung Hari & Query Table Hari
 $queryDay = mysqli_query($conn,"Select * From hari");
 $countDay = mysqli_num_rows($queryDay);
-	
+
+$Ro  = "SELECT * FROM ruangan WHERE id_fak='$fakultas' AND id_jur='$jurusan'";
+$num = mysqli_num_rows(mysqli_query($conn,$Ro));
+# Set Statis Css dengan PHP 
+$width = $num*740;
+echo '<div class="tablefull" style="width:'.$width.'px">';
 
 for($daya=0;$daya<=$countDay-1;$daya++){
 	
 	$day = mysqli_fetch_assoc($queryDay);
 
 	echo"<div class='tables'>";
-	echo"<table class='time-schedule  table-bordered'>";
+	echo"<table class='time-schedule table-bordered'>";
 	
 	if($day['hari'] == 'Senin'){
 	
@@ -58,31 +63,30 @@ for($daya=0;$daya<=$countDay-1;$daya++){
 		}
 		
 	echo "</table>";
-	
-	// Ruang
+	# Hitung Jumlah Ruang dan Query table Ruangan
+
 	$QroomSql 	= "SELECT * FROM ruangan WHERE id_fak='$fakultas' AND id_jur='$jurusan' ORDER BY nama_ruang";
 	$Qroom 		= mysqli_query($conn,$QroomSql);
 	$count 		= mysqli_num_rows($Qroom);
+
 	$thisDay	= $day['id_hari'] ;
 	
-	
-	
-	if($thisDay== 1){
+	if($thisDay == 1){
 
 	for($room=0;$room<=$count-1;$room++){
 	
 	$jadwal = mysqli_fetch_assoc($Qroom);	
-	$ruang = $jadwal['id_ruang'];
+	$ruang  = $jadwal['id_ruang'];
 	
 	echo"<table class='time-schedule table-bordered table-ruang'>";
 		echo "<tr>";
-			echo "<td colspan=4>".$jadwal['nama_ruang']."</td>";
+			echo "<td colspan=4 align='center'>".$jadwal['nama_ruang']."</td>";
 		echo "</tr>";
 		
 				echo "<tr>";
 					echo "<td id='a'>Semester</td>";
-					echo "<td id='b'>Mata Kuliah</td>";
-					echo "<td id='c'>Dosen</td>";
+					echo "<td id='b' align='center'>Mata Kuliah</td>";
+					echo "<td id='c' align='center'>Dosen</td>";
 					echo "<td id='d'>Kelas</td>";
 				echo "</tr>";
 		
@@ -147,15 +151,8 @@ for($daya=0;$daya<=$countDay-1;$daya++){
 	echo "</div>";
 }
 
+echo '</div>';
 ?>
-<script type="text/javascript">
-$(function(){
- var n = $( ".table-ruang" ).length;
- var W = $( "table.table-ruang" ).width() * (n+1);
- var Wn = W*20;
- $('.tables').width(W);
-});
-</script>
 
 <script>
 var full = $('.jadwalfull').html();
@@ -178,31 +175,5 @@ var full = $('.jadwalfull').html();
 		$('#addnew-modal').fadeOut();	
 	
 	});
-		$('#addnew').click(function(){
-	
-		var idjur = $('#jurusan').val();
-		var im = $('#idm').val();
-		var idfak = $('#fakultas').val();
-		
-		if(idjur == ''){
-		
-			$('#addjad').html('Mohon pilih Fakultas dan Jurusan terlebih dahulu sebelum Anda melanjutkan untuk Request Jadwal. Terimakasih!');		
-			$('#addnew-modal').fadeIn();		
-		}else{
-		dataString = 'id=' + idjur + '&fak='+ idfak +'&im='+ im;
-			$.ajax({
-			type: "POST",
-			url: "users/form_jadwal.php",
-			data: dataString,
-			success: function(result){
-				$('#addjad').html(result);
-				$('#addnew-modal').fadeIn();		
-			}
-			
-			});
-			return false;
-		
-		}
 
-	});
 </script>
